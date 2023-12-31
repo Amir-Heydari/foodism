@@ -2,22 +2,55 @@ import { useNavigation } from '@react-navigation/native';
 import { StatusBar } from 'expo-status-bar';
 import React, { useEffect, useState } from 'react';
 import { View, Text, ScrollView, Image, TouchableOpacity } from 'react-native';
-import { ChevronLeftIcon, HeartIcon as EmptyHeart } from 'react-native-heroicons/outline';
-import { HeartIcon as FilledHeart } from 'react-native-heroicons/solid';
+import { ChevronLeftIcon, ClockIcon, HeartIcon as EmptyHeart, Square3Stack3DIcon } from 'react-native-heroicons/outline';
+import { HeartIcon as FilledHeart, FireIcon, UserGroupIcon } from 'react-native-heroicons/solid';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 import useMealDB from '../network/useMealDB';
 import Loading from '../components/Loading';
 
 const RecipeDetailScreen = (props) => {
-    let item = props.route.params
-    const [isFavourite, setIsFavourite] = useState(false)
-    const [recipeDetail, setRecipeDetail] = useState([])
-    const navigation = useNavigation()
-    const { getRecipeDetail } = useMealDB()
+    //variables & states
+    let item = props.route.params;
+    const [isFavourite, setIsFavourite] = useState(false);
+    const [recipeDetail, setRecipeDetail] = useState([]);
+    const [ingredients, setIngredients] = useState([]);
+    const [measures, setMeasures] = useState([]);
+    const navigation = useNavigation();
+    const { getRecipeDetail } = useMealDB();
 
     useEffect(() => {
-        getRecipeDetail(item.idMeal).then(response => setRecipeDetail(response.meals))
+        getRecipeDetail(item.idMeal)
+            .then(response => {
+                setRecipeDetail(response.meals)
+                ingredeintsCollector(response.meals);
+                measureCollector(response.meals);
+            })
     }, [])
+
+    //Data sort functions
+    const ingredeintsCollector = (meal) => {
+        const data = meal[0]
+        const ingredient = [];
+        for (let i = 1; i < 21; i++) {
+            if (data['strIngredient' + i] !== "") {
+                ingredient.push(data['strIngredient' + i])
+            }
+        }
+        setIngredients(ingredient)
+    }
+    const measureCollector = (meal) => {
+        const data = meal[0]
+        const measure = [];
+        for (let i = 1; i < 21; i++) {
+            if (data['strMeasure' + i] !== " ") {
+                measure.push(data['strMeasure' + i])
+            }
+        }
+        setMeasures(measure)
+    }
+
+
+
     return (
         recipeDetail.length > 0 ? (
             <ScrollView
@@ -62,6 +95,44 @@ const RecipeDetailScreen = (props) => {
                             style={{ fontSize: hp(2) }}>
                             {recipeDetail[0]?.strArea}
                         </Text>
+                    </View>
+                    {/* details */}
+                    <View className='flex-row justify-around'>
+                        <View className='flex rounded-full bg-amber-300 p-2'>
+                            <View className="flex items-center justify-center bg-white rounded-full p-1">
+                                <ClockIcon size={hp(4)} strokeWidth={2.5} color='black' />
+                            </View>
+                            <View className='flex items-center py-2 space-y-1'>
+                                <Text className='text text-neutral-700 font-semibold' style={{ fontSize: hp(2.5) }}>35</Text>
+                                <Text className='text text-neutral-700 font-bold' style={{ fontSize: hp(1.5) }}>Mins</Text>
+                            </View>
+                        </View>
+                        <View className='flex rounded-full bg-amber-300 p-2'>
+                            <View className="flex items-center justify-center bg-white rounded-full p-1">
+                                <UserGroupIcon size={hp(4)} strokeWidth={2.5} color='black' />
+                            </View>
+                            <View className='flex items-center py-2 space-y-1'>
+                                <Text className='text text-neutral-700 font-semibold' style={{ fontSize: hp(2.5) }}>06</Text>
+                                <Text className='text text-neutral-700 font-bold' style={{ fontSize: hp(1.5) }}>Servings</Text>
+                            </View>
+                        </View>
+                        <View className='flex rounded-full bg-amber-300 p-2'>
+                            <View className="flex items-center justify-center bg-white rounded-full p-1">
+                                <FireIcon size={hp(4)} strokeWidth={2.5} color='black' />
+                            </View>
+                            <View className='flex items-center py-2 space-y-1'>
+                                <Text className='text text-neutral-700 font-semibold' style={{ fontSize: hp(2.5) }}>110</Text>
+                                <Text className='text text-neutral-700 font-bold' style={{ fontSize: hp(1.5) }}>Cals</Text>
+                            </View>
+                        </View>
+                        <View className='flex rounded-full bg-amber-300 p-2'>
+                            <View className="flex items-center justify-center bg-white rounded-full p-1">
+                                <Square3Stack3DIcon size={hp(4)} strokeWidth={2.5} color='black' />
+                            </View>
+                            <View className='flex items-center py-2 space-y-1'>
+                                <Text className='text text-neutral-700 font-bold' style={{ fontSize: hp(1.5) }}>Easy</Text>
+                            </View>
+                        </View>
                     </View>
                     <View className='px-4 space-y-2'>
                         <Text
