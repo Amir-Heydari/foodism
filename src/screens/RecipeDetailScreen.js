@@ -5,7 +5,6 @@ import { View, Text, ScrollView, Image, TouchableOpacity, Button } from 'react-n
 import { ChevronLeftIcon, ClockIcon, HeartIcon as EmptyHeart, Square3Stack3DIcon } from 'react-native-heroicons/outline';
 import { HeartIcon as FilledHeart, FireIcon, UserGroupIcon } from 'react-native-heroicons/solid';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
-import Animated, { FadeInRight, FadeInLeft, FadeOutRight, FadeOutLeft } from 'react-native-reanimated'
 import useMealDB from '../network/useMealDB';
 import Loading from '../components/Loading';
 
