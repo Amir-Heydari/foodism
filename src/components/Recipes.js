@@ -10,7 +10,6 @@ const Recipes = ({ recipesByCatData }) => {
     const navigation = useNavigation()
     return (
         <View className='mx-4 space-y-3'>
-            <Text style={{ fontSize: hp(3) }} className="font-semibold text-neutral-600">Recipes</Text>
             <View>
                 {/* {
                     recipesByCatData.map((v, i) => {
@@ -50,9 +49,9 @@ const RecipeCard = ({ item, index, navigation }) => {
                 <Image
                     style={{ width: '100%', height: index % 3 == 0 ? hp(25) : hp(35), borderRadius: 35 }}
                     source={{ uri: item.strMealThumb }}
-                    className="bg-black/5"
+                    className="bg-white/20"
                 />
-                <Text style={{ fontSize: hp(2) }} className="ml-2 font-semibold text-neutral-600">
+                <Text style={{ fontSize: hp(2) }} className="ml-2 font-semibold text-[#ABABAB]">
                     {item.strMeal.length > 20 ? item.strMeal.slice(0, 20) + '...' : item.strMeal}
                 </Text>
             </Pressable>

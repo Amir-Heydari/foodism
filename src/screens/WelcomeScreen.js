@@ -19,27 +19,27 @@ const WelcomeScreen = () => {
         
         ring1padding.value = 0;
         ring2padding.value = 0;
-        setTimeout(() => ring1padding.value = withSpring(ring1padding.value + hp(5)), 50)
-        setTimeout(() => ring2padding.value = withSpring(ring1padding.value + hp(10)), 200)
+        setTimeout(() => ring1padding.value = withSpring(ring1padding.value + hp(4)), 50)
+        setTimeout(() => ring2padding.value = withSpring(ring1padding.value + hp(0.2)), 200)
 
-        setTimeout(() => navigation.navigate('Home'), 4000)
+        setTimeout(() => navigation.navigate('Home'), 2000)
     }, [])
 
     return (
-        <View className='flex-1 justify-center items-center space-y-6 bg-amber-700' >
+        <View className='flex-1 justify-center items-center space-y-6 bg-[#010101]' >
             <StatusBar style='light' />
             {/* logo and ring */}
             <Animated.View className='bg-white/20 rounded-full' style={{ padding: ring1padding }}>
                 <Animated.View className='bg-white/20 rounded-full' style={{ padding: ring2padding }}>
-                    <Image source={require('../../assets/images/welcome.png')} style={{ width: hp(20), height: hp(20) }} />
+                    <Image source={require('../../assets/images/welcome.png')} style={{ width: hp(35), height: hp(35) }} />
                 </Animated.View>
             </Animated.View>
             <View className='flex items-center space-y-2'>
-                <Text className='font-extrabold text-white tracking-wider ' style={{ fontSize: hp(6) }}>
+                <Text className='font-extrabold text-[#ca8100] tracking-wider ' style={{ fontSize: hp(6) }}>
                     FOODISM
                 </Text>
-                <Text className='font-medium text-white tracking-wide' style={{ fontSize: hp(3) }}>
-                    Cook everything,anytime,anywhere
+                <Text className='font-medium text-white tracking-wide uppercase' style={{ fontSize: hp(2.8) }}>
+                    <Text className='text-[#ca8100]'>Cook </Text>anything,anywhere,anytime
                 </Text>
             </View>
         </View>

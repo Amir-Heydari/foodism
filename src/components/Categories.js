@@ -21,21 +21,21 @@ const Categories = ({ activeCategory, categoryData }) => {
                 {
                     categoryData.categories.map((v) => {
                         let isActive = v.strCategory == activeCategory
-                        let activeCategoryBackground = isActive ? 'bg-amber-400' : 'bg-black/10';
+                        let activeCategoryBackground = isActive ? 'bg-[#ca8100]' : 'bg-white/20';
                         return (
                             <TouchableOpacity
                                 onPress={() => dispatch(setActiveCategory(v.strCategory))}
                                 key={v.idCategory}
                                 className='flex justify-center items-center'>
                                 <View
-                                    className={`rounded-full p-[6px] ${activeCategoryBackground}`}>
+                                    className={`rounded-full p-[8px] ${activeCategoryBackground}`}>
                                     <Image
                                         source={{ uri: v.strCategoryThumb }}
-                                        style={{ width: hp(7), height: hp(7) }}
+                                        style={{ width: hp(7.5), height: hp(7.5) }}
                                         className="rounded-full"
                                     />
                                 </View>
-                                <Text className="text-neutral-600" style={{ fontSize: hp(2) }}>{v.strCategory}</Text>
+                                <Text className="text-[#ABABAB]" style={{ fontSize: hp(2) }}>{v.strCategory}</Text>
                             </TouchableOpacity>
                         )
                     })

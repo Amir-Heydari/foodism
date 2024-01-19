@@ -56,7 +56,7 @@ const RecipeDetailScreen = (props) => {
             <View
                 className='px-4 space-y-4'>
                 <Text
-                    className="font-medium text-neutral-600"
+                    className="font-medium text-[#ABABAB]"
                     style={{ fontSize: hp(2.5) }}>
                     {recipeDetail[0]?.strInstructions}
                 </Text>
@@ -67,7 +67,6 @@ const RecipeDetailScreen = (props) => {
     function IngredientsPage() {
         return (
             <View
-
                 className='px-4 flex flex-row justify-start gap-4'
             >
                 <View className='flex gap-1'>{
@@ -76,10 +75,10 @@ const RecipeDetailScreen = (props) => {
                             <View className='flex flex-row gap-3'>
                                 <View key={i} className="flex flex-row items-center gap-1">
                                     <View style={{ width: hp(1.5), height: hp(1.5) }} className="rounded-full bg-amber-300" />
-                                    <Text style={{ fontSize: hp(2.5) }} className='text-neutral-600 font-bold' key={i}>{measures[i]}</Text>
+                                    <Text style={{ fontSize: hp(2.5) }} className='text-[#ABABAB] font-bold' key={i}>{measures[i]}</Text>
                                 </View>
                                 <View className="flex flex-row items-center pt-2 pl-1">
-                                    <Text style={{ fontSize: hp(2.5) }} className='text-neutral-600 font-semibold'>{v}</Text>
+                                    <Text style={{ fontSize: hp(2.5) }} className='text-[#ABABAB] font-semibold'>{v}</Text>
 
                                 </View>
                             </View>
@@ -91,34 +90,53 @@ const RecipeDetailScreen = (props) => {
     }
 
 
+    const dishDetail = [
+        {
+            title: 'Mins',
+            amount: '35',
+            icon: <ClockIcon size={hp(4)} strokeWidth={2.5} color='black' />
+        },
+        {
+            title: 'Servings',
+            amount: '06',
+            icon: <UserGroupIcon size={hp(4)} strokeWidth={2.5} color='black' />
+        },
+        {
+            title: 'Cals',
+            amount: '06',
+            icon: <FireIcon size={hp(4)} strokeWidth={2.5} color='black' />
+        },
+    ]
+
+
     return (
         recipeDetail.length > 0 ? (
             <>
                 <ScrollView
-                    className='bg-white flex-1'
+                    className='bg-black/90 flex-1'
                     showsVerticalScrollIndicator={false}
                     contentContainerStyle={{ paddingBottom: 30 }}
                 >
                     <StatusBar hidden={true} />
-                    <View className="flex-row justify-center bg-amber-400 pb-1">
-                        <Image source={{ uri: item.strMealThumb }} style={{ width: '100%', height: hp(48), borderBottomLeftRadius: 35, borderBottomRightRadius: 35 }} />
+                    <View className="flex-row justify-center bg-[#ca8100]1">
+                        <Image source={{ uri: item.strMealThumb }} style={{ width: '100%', height: hp(48), }} />
                     </View>
                     {/* back and favourite botton */}
                     <View className="flex-row w-full absolute justify-between items-start" style={{ paddingTop: hp(3), paddingLeft: hp(2.5), paddingRight: hp(2.5) }}>
                         <TouchableOpacity
                             onPress={() => navigation.goBack()}
-                            className="p-2 bg-white rounded-full">
-                            <ChevronLeftIcon size={hp(3.5)} strokeWidth={4.5} color='#fbbf24' />
+                            className="p-2 bg-black/90 rounded-full">
+                            <ChevronLeftIcon size={hp(3.5)} strokeWidth={4.5} color='#ca8100' />
                         </TouchableOpacity>
 
                         <TouchableOpacity
                             onPress={() => { setIsFavourite(!isFavourite) }}
-                            className="p-2 bg-white rounded-full">
+                            className="p-2 bg-[#010101] rounded-full">
                             {
                                 isFavourite ?
-                                    <FilledHeart size={hp(3.5)} strokeWidth={4.5} color='#fbbf24' />
+                                    <FilledHeart size={hp(3.5)} strokeWidth={4.5} color='#ca8100' />
                                     :
-                                    <EmptyHeart size={hp(3.5)} strokeWidth={2.5} color='#fbbf24' />
+                                    <EmptyHeart size={hp(3.5)} strokeWidth={2.5} color='#ca8100' />
                             }
                         </TouchableOpacity>
                     </View>
@@ -127,68 +145,46 @@ const RecipeDetailScreen = (props) => {
                         {/* name */}
                         <View className='px-6 space-y-1'>
                             <Text
-                                className="font-bold tracking-wider text-neutral-700"
+                                className="font-bold tracking-wider text-[#ABABAB]"
                                 style={{ fontSize: hp(4) }}>
                                 {recipeDetail[0]?.strMeal}
                             </Text>
                             <Text
-                                className="font-bold tracking-wider text-neutral-500"
+                                className="font-bold tracking-wider text-[#ABABAB]"
                                 style={{ fontSize: hp(2) }}>
                                 {recipeDetail[0]?.strArea}
                             </Text>
                         </View>
                         {/* details */}
                         <View className='flex-row justify-around'>
-                            <View className='flex rounded-full bg-amber-300 p-2'>
-                                <View className="flex items-center justify-center bg-white rounded-full p-1">
-                                    <ClockIcon size={hp(4)} strokeWidth={2.5} color='black' />
-                                </View>
-                                <View className='flex items-center py-2 space-y-1'>
-                                    <Text className='text text-neutral-700 font-semibold' style={{ fontSize: hp(2.5) }}>35</Text>
-                                    <Text className='text text-neutral-700 font-bold' style={{ fontSize: hp(1.5) }}>Mins</Text>
-                                </View>
-                            </View>
-                            <View className='flex rounded-full bg-amber-300 p-2'>
-                                <View className="flex items-center justify-center bg-white rounded-full p-1">
-                                    <UserGroupIcon size={hp(4)} strokeWidth={2.5} color='black' />
-                                </View>
-                                <View className='flex items-center py-2 space-y-1'>
-                                    <Text className='text text-neutral-700 font-semibold' style={{ fontSize: hp(2.5) }}>06</Text>
-                                    <Text className='text text-neutral-700 font-bold' style={{ fontSize: hp(1.5) }}>Servings</Text>
-                                </View>
-                            </View>
-                            <View className='flex rounded-full bg-amber-300 p-2'>
-                                <View className="flex items-center justify-center bg-white rounded-full p-1">
-                                    <FireIcon size={hp(4)} strokeWidth={2.5} color='black' />
-                                </View>
-                                <View className='flex items-center py-2 space-y-1'>
-                                    <Text className='text text-neutral-700 font-semibold' style={{ fontSize: hp(2.5) }}>110</Text>
-                                    <Text className='text text-neutral-700 font-bold' style={{ fontSize: hp(1.5) }}>Cals</Text>
-                                </View>
-                            </View>
-                            <View className='flex rounded-full bg-amber-300 p-2'>
-                                <View className="flex items-center justify-center bg-white rounded-full p-1">
-                                    <Square3Stack3DIcon size={hp(4)} strokeWidth={2.5} color='black' />
-                                </View>
-                                <View className='flex items-center py-2 space-y-1'>
-                                    <Text className='text text-neutral-700 font-bold' style={{ fontSize: hp(1.5) }}>Easy</Text>
-                                </View>
-                            </View>
+                            {dishDetail.map((v, i) => {
+                                return (
+                                    <View className='flex rounded-full bg-[#ca8100] p-2'>
+                                        <View className="flex items-center justify-center bg-white rounded-full p-1">{v.icon}</View>
+                                        <View className='flex items-center py-2 space-y-1'>
+                                            <Text className='text text-[#010101] font-semibold' style={{ fontSize: hp(2.5) }}>{v.amount}</Text>
+                                            <Text className='text text-[#010101] font-bold' style={{ fontSize: hp(1.5) }}>{v.title}</Text>
+                                        </View>
+                                    </View>
+                                )
+                            })}
                         </View>
                         {/* custom tab navigator */}
                         <View className='flex flex-row w-full justify-evenly'>
+                            {/* ingredients */}
                             <TouchableOpacity
                                 onPress={() => setPage('Ingredients')}
-                                style={{ width: '50%' }} className={`${page === "Ingredients" ? 'bg-amber-500' : 'bg-amber-300'}  p-2 flex justify-center items-center`}>
+                                style={{ width: '50%' }} className={`${page === "Ingredients" ? 'bg-[#ca8100]' : 'bg-[#010101]'}  p-2 flex justify-center items-center`}>
                                 <View>
                                     <Text style={{ fontSize: hp(2.5) }} className='text-white font-semibold'>
                                         Ingredients
                                     </Text>
                                 </View>
                             </TouchableOpacity>
+                            {/* instruction */}
                             <TouchableOpacity
                                 onPress={() => setPage('Instruction')}
-                                style={{ width: '50%' }} className={`${page === "Instruction" ? 'bg-amber-500' : 'bg-amber-300'}  p-2 flex justify-center items-center`}>
+                                style={{ width: '50%' }} className={`${page === "Instruction" ? 'bg-[#ca8100]' : 'bg-[#010101]'}  p-2 flex justify-center items-center`}>
                                 <View>
                                     <Text style={{ fontSize: hp(2.5) }} className='text-white font-semibold'>
                                         Instructions

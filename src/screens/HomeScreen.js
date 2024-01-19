@@ -25,7 +25,7 @@ function HomeScreen() {
     }, [activeCategory])
 
     return (
-        <View className="flex-1 bg-white">
+        <View className="flex-1 bg-[#010101]">
             <StatusBar style="dark" />
             <ScrollView
                 showsVerticalScrollIndicator={false}
@@ -35,28 +35,28 @@ function HomeScreen() {
                 {/* header */}
                 <View className='mx-4 flex-row justify-between items-center'>
                     <Image source={require('../../assets/images/avatar.png')} style={{ width: hp(5), height: hp(5.5) }} />
-                    <BellIcon size={hp(4)} color='gray' />
+                    <BellIcon size={hp(4)} color='#ABABAB' />
                 </View>
 
                 {/* greeting */}
                 <View className='mx-4 space-y-2 mb-2'>
-                    <Text className='text-neutral-600' style={{ fontSize: hp(2) }}>Hello Amir</Text>
+                    <Text className='text-[#FEFEFE]' style={{ fontSize: hp(2) }}>Hello Amir</Text>
                     <View>
-                        <Text style={{ fontSize: hp(3.6) }} className='font-semibold text-neutral-600'>Make your own food,</Text>
+                        <Text style={{ fontSize: hp(3.6) }} className='font-semibold text-[#FEFEFE]'>Make your own food,</Text>
                     </View>
-                    <Text style={{ fontSize: hp(3.6) }} className='font-semibold text-neutral-600'>At <Text className='text-amber-500'>HOME</Text></Text>
+                    <Text style={{ fontSize: hp(3.6) }} className='font-semibold text-[#FEFEFE]'>At <Text className='text-[#ca8100]'>HOME</Text></Text>
                 </View>
 
                 {/* search part */}
-                <View className='mx-4 flex-row rounded-full items-center p-2 bg-black/5 '>
+                <View className='mx-4 flex-row rounded-full items-center p-2 bg-white/10'>
                     <TextInput
                         placeholder="Search for food"
                         placeholderTextColor={'gray'}
                         style={{ fontSize: hp(2) }}
-                        className='flex-1 text-base pl-3 tracking-wide'
+                        className='flex-1 text-base pl-3 tracking-wide placeholder:text-[#ABABAB]'
                     />
-                    <View className='bg-white rounded-full p-2'>
-                        <MagnifyingGlassIcon size={hp(3)} strokeWidth={3} color={'gray'} />
+                    <View className='bg-[#ABABAB] rounded-full p-2'>
+                        <MagnifyingGlassIcon size={hp(3)} strokeWidth={3} color={'#010101'} />
                     </View>
                 </View>
 
@@ -66,6 +66,7 @@ function HomeScreen() {
                 </View>
 
                 {/* Recipes */}
+                    <Text style={{ fontSize: hp(3) }} className="mx-4 space-y-3 font-semibold text-[#ABABAB]">Recipes</Text>
                 <View>
                     {recipesByCatData.length > 0 ? (<Recipes recipesByCatData={recipesByCatData} />) : (<Loading size='large' />)}
                 </View>
