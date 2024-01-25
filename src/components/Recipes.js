@@ -1,25 +1,18 @@
 import React from 'react';
 import { View, Text, Pressable, Image } from 'react-native';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
-import { useSelector } from 'react-redux'
 import MasonryList from '@react-native-seoul/masonry-list'
-import Animated, { FadeInDown } from 'react-native-reanimated'
 import { useNavigation } from '@react-navigation/native';
+import Animated, { FadeInDown } from 'react-native-reanimated'
+
 const Recipes = ({ recipesByCatData }) => {
-    // const recipesByCatData = useSelector((state) => state.data.recipesByCat.meals)
+
+    //Hooks
     const navigation = useNavigation()
+
     return (
         <View className='mx-4 space-y-3'>
             <View>
-                {/* {
-                    recipesByCatData.map((v, i) => {
-                        return (
-                            <View>
-                                <Text>i</Text>
-                            </View>
-                        )
-                    })
-                } */}
                 {<MasonryList
                     data={recipesByCatData}
                     keyExtractor={(item) => item.idMeal}

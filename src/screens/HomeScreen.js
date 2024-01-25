@@ -1,9 +1,11 @@
+import { useEffect, useState } from "react"
 import { StatusBar } from "expo-status-bar"
-import react, { useEffect, useState } from "react"
-import { Image, ScrollView, Text, TextInput, View } from "react-native"
+import { Image, ScrollView, Text, TextInput, View, BackHandler, Alert } from "react-native"
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
-import { BellIcon, MagnifyingGlassIcon } from "react-native-heroicons/outline";
 import { useSelector } from 'react-redux'
+
+import { BellIcon, MagnifyingGlassIcon } from "react-native-heroicons/outline";
+
 import Categories from "../components/Categories";
 import useMealDB from "../network/useMealDB";
 import Recipes from "../components/Recipes";
@@ -23,6 +25,28 @@ function HomeScreen() {
                 setRecipesByCatData(response.meals)
             })
     }, [activeCategory])
+
+    //back handler
+    // useEffect(() => {
+    //     const backAction = () => {
+    //         Alert.alert('Warning!', 'Are you sure you want to exit?', [
+    //             {
+    //                 text: 'Cancel',
+    //                 onPress: () => null,
+    //                 style: 'cancel',
+    //             },
+    //             { text: 'YES', onPress: () => BackHandler.exitApp() },
+    //         ]);
+    //         return true;
+    //     };
+
+    //     const backHandler = BackHandler.addEventListener(
+    //         'hardwareBackPress',
+    //         backAction,
+    //     );
+
+    //     return () => backHandler.remove();
+    // }, []);
 
     return (
         <View className="flex-1 bg-[#010101]">
@@ -66,7 +90,7 @@ function HomeScreen() {
                 </View>
 
                 {/* Recipes */}
-                    <Text style={{ fontSize: hp(3) }} className="mx-4 space-y-3 font-semibold text-[#ABABAB]">Recipes</Text>
+                <Text style={{ fontSize: hp(3) }} className="mx-4 space-y-3 font-semibold text-[#ABABAB]">Recipes</Text>
                 <View>
                     {recipesByCatData.length > 0 ? (<Recipes recipesByCatData={recipesByCatData} />) : (<Loading size='large' />)}
                 </View>

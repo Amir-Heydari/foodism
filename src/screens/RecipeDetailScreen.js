@@ -1,10 +1,12 @@
-import { useNavigation } from '@react-navigation/native';
-import { StatusBar } from 'expo-status-bar';
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { View, Text, ScrollView, Image, TouchableOpacity, Button } from 'react-native';
+import { StatusBar } from 'expo-status-bar';
+import { useNavigation } from '@react-navigation/native';
+import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
+
 import { ChevronLeftIcon, ClockIcon, HeartIcon as EmptyHeart, Square3Stack3DIcon } from 'react-native-heroicons/outline';
 import { HeartIcon as FilledHeart, FireIcon, UserGroupIcon } from 'react-native-heroicons/solid';
-import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
+
 import useMealDB from '../network/useMealDB';
 import Loading from '../components/Loading';
 
@@ -72,7 +74,7 @@ const RecipeDetailScreen = (props) => {
                 <View className='flex gap-1'>{
                     ingredients.map((v, i) => {
                         if (v !== '') return (
-                            <View className='flex flex-row gap-3'>
+                            <View key={i} className='flex flex-row gap-3'>
                                 <View key={i} className="flex flex-row items-center gap-1">
                                     <View style={{ width: hp(1.5), height: hp(1.5) }} className="rounded-full bg-amber-300" />
                                     <Text style={{ fontSize: hp(2.5) }} className='text-[#ABABAB] font-bold' key={i}>{measures[i]}</Text>
@@ -92,16 +94,19 @@ const RecipeDetailScreen = (props) => {
 
     const dishDetail = [
         {
+            id: 1,
             title: 'Mins',
             amount: '35',
             icon: <ClockIcon size={hp(4)} strokeWidth={2.5} color='black' />
         },
         {
+            id: 2,
             title: 'Servings',
             amount: '06',
             icon: <UserGroupIcon size={hp(4)} strokeWidth={2.5} color='black' />
         },
         {
+            id: 3,
             title: 'Cals',
             amount: '06',
             icon: <FireIcon size={hp(4)} strokeWidth={2.5} color='black' />
@@ -121,7 +126,7 @@ const RecipeDetailScreen = (props) => {
                     <View className="flex-row justify-center bg-[#ca8100]1">
                         <Image source={{ uri: item.strMealThumb }} style={{ width: '100%', height: hp(48), }} />
                     </View>
-                    {/* back and favourite botton */}
+                    {/* back and like botton */}
                     <View className="flex-row w-full absolute justify-between items-start" style={{ paddingTop: hp(3), paddingLeft: hp(2.5), paddingRight: hp(2.5) }}>
                         <TouchableOpacity
                             onPress={() => navigation.goBack()}
@@ -157,9 +162,9 @@ const RecipeDetailScreen = (props) => {
                         </View>
                         {/* details */}
                         <View className='flex-row justify-around'>
-                            {dishDetail.map((v, i) => {
+                            {dishDetail.map((v) => {
                                 return (
-                                    <View className='flex rounded-full bg-[#ca8100] p-2'>
+                                    <View key={v.id} className='flex rounded-full bg-[#ca8100] p-2'>
                                         <View className="flex items-center justify-center bg-white rounded-full p-1">{v.icon}</View>
                                         <View className='flex items-center py-2 space-y-1'>
                                             <Text className='text text-[#010101] font-semibold' style={{ fontSize: hp(2.5) }}>{v.amount}</Text>

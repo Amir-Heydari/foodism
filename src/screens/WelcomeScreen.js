@@ -7,16 +7,17 @@ import { useNavigation } from '@react-navigation/native';
 import useMealDB from '../network/useMealDB';
 
 const WelcomeScreen = () => {
+    //Hooks
+    const navigation = useNavigation()
     const ring1padding = useSharedValue(0)
     const ring2padding = useSharedValue(0)
-
-    const navigation = useNavigation()
-
+    
+    // Functions
     const { getCategory } = useMealDB()
 
     useEffect(() => {
         getCategory()
-        
+
         ring1padding.value = 0;
         ring2padding.value = 0;
         setTimeout(() => ring1padding.value = withSpring(ring1padding.value + hp(4)), 50)
@@ -36,7 +37,7 @@ const WelcomeScreen = () => {
             </Animated.View>
             <View className='flex items-center space-y-2'>
                 <Text className='font-extrabold text-[#ca8100] tracking-wider ' style={{ fontSize: hp(6) }}>
-                    FOODISM
+                    DishDive
                 </Text>
                 <Text className='font-medium text-white tracking-wide uppercase' style={{ fontSize: hp(2.8) }}>
                     <Text className='text-[#ca8100]'>Cook </Text>anything,anywhere,anytime

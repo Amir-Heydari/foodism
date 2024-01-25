@@ -1,11 +1,13 @@
 import axios from 'axios'
-import React from 'react'
 import { useDispatch } from 'react-redux'
 import { Categories } from '../slices/dataSlice'
 import { setActiveCategory } from '../slices/toolsSlice'
+
 function useMealDB() {
+    // Hooks
     const dispatch = useDispatch()
 
+    // Functions
     const getCategory = () => {
         return new Promise((resolve, reject) => {
             axios.get('https://www.themealdb.com/api/json/v1/1/categories.php')

@@ -8,6 +8,7 @@ import { setActiveCategory } from '../slices/toolsSlice'
 
 const Categories = ({ activeCategory, categoryData }) => {
 
+    // Hooks
     const dispatch = useDispatch()
 
     return (

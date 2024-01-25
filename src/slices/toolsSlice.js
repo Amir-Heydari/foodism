@@ -14,7 +14,6 @@ export const toolsSlice = createSlice({
     },
 })
 
-// Action creators are generated for each case reducer function
 export const { setActiveCategory } = toolsSlice.actions
 
 export default toolsSlice.reducer
